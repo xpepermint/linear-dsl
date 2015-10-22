@@ -4,7 +4,8 @@
   "description": "For building custom DSLs.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --harmony --harmony-destructuring",
+    "test:dev": "mocha --harmony --harmony-destructuring --watch"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,12 @@
   "bugs": {
     "url": "https://github.com/xpepermint/linear-dsl/issues"
   },
-  "homepage": "https://github.com/xpepermint/linear-dsl#readme"
+  "homepage": "https://github.com/xpepermint/linear-dsl#readme",
+  "devDependencies": {
+    "chai": "^3.4.0",
+    "mocha": "^2.3.3"
+  },
+  "dependencies": {
+    "xregexp": "^3.0.0"
+  }
 }
