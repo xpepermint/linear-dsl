@@ -2,6 +2,8 @@
 
 > For building custom DSLs.
 
+[![Build Status](https://travis-ci.org/xpepermint/linear-dsl.svg?branch=master)](https://travis-ci.org/xpepermint/linear-dsl)
+
 ## Setup
 
 ```
