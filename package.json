@@ -1,6 +1,6 @@
 {
   "name": "linear-dsl",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "For building custom DSLs.",
   "main": "index.js",
   "scripts": {
