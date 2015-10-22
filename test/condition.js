@@ -11,8 +11,8 @@ describe('Condition', function() {
   describe('stringify(array)', function() {
     it('should return a valid string', function() {
       expect(Condition.stringify(['A', 'B', 'C'])).eql('A(B C)');
-      expect(Condition.stringify(['A-', 'B', 'C'])).eql('A-(B C)');
-      expect(Condition.stringify(['_', '_', 'C'])).eql('_(_ C)');
+      expect(Condition.stringify(['A-!', 'B', 'C'])).eql('A-!(B C)');
+      expect(Condition.stringify(['_@', '_%', 'C<'])).eql('_@(_% C<)');
     });
 
     it('should return `null` on invalid condition', function() {
@@ -21,9 +21,9 @@ describe('Condition', function() {
       expect(Condition.stringify([null])).eql(null);
       expect(Condition.stringify([1])).eql(null);
       expect(Condition.stringify([{}])).eql(null);
-      expect(Condition.stringify(['!', 'B', 'C'])).eql(null);
+      expect(Condition.stringify(['!(', 'B', 'C'])).eql(null);
       expect(Condition.stringify(['A', ' ', 'C'])).eql(null);
-      expect(Condition.stringify(['!', 'B'])).eql(null);
+      expect(Condition.stringify([')', 'B'])).eql(null);
     });
   });
 
@@ -31,6 +31,7 @@ describe('Condition', function() {
 
   describe('parse(string)', function() {
     it('should return parsed condition array', function() {
+      expect(Condition.parse('A()')).eql(['A']);
       expect(Condition.parse('A(B C)')).eql(['A', 'B', 'C']);
     });
 
@@ -40,8 +41,7 @@ describe('Condition', function() {
       expect(Condition.parse('')).eql(null);
       expect(Condition.parse(' A(B C)')).eql(null);
       expect(Condition.parse('fake A(B C)')).eql(null);
-      expect(Condition.parse('A@(B C)')).eql(null);
-      expect(Condition.parse('A(B! C)')).eql(null);
+      expect(Condition.parse('A((B C))')).eql(null);
     });
   });
 
@@ -55,21 +55,21 @@ describe('Condition', function() {
 
     it('should return `false` on invalid string', function() {
       expect(Condition.isValid(' A(B C)')).eql(false);
-      expect(Condition.isValid('A(B! C)')).eql(false);
+      expect(Condition.isValid('A(())')).eql(false);
     });
   });
 
   describe('isValid(array)', function() {
     it('should return `true` on valid condition array', function() {
       expect(Condition.isValid(['A'])).eql(true);
-      expect(Condition.isValid(['A', 'B'])).eql(true);
-      expect(Condition.isValid(['A', 'B-', '_'])).eql(true);
+      expect(Condition.isValid(['A', 'B@'])).eql(true);
+      expect(Condition.isValid(['A!', 'B-', '_'])).eql(true);
     });
 
     it('should return `false` on invalid condition array', function() {
       expect(Condition.isValid([])).eql(false);
       expect(Condition.isValid(null)).eql(false);
-      expect(Condition.isValid(['@'])).eql(false);
+      expect(Condition.isValid(['()'])).eql(false);
     });
   });
 

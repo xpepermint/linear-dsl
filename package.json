@@ -1,6 +1,6 @@
 {
   "name": "linear-dsl",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "For building custom DSLs.",
   "main": "index.js",
   "scripts": {
@@ -28,8 +28,5 @@
   "devDependencies": {
     "chai": "^3.4.0",
     "mocha": "^2.3.3"
-  },
-  "dependencies": {
-    "xregexp": "^3.0.0"
   }
 }

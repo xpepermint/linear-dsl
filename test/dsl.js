@@ -25,9 +25,9 @@ describe('DSL', function() {
       expect(DSL.parse(null)).eql(null);
       expect(DSL.parse('A')).eql(null);
       expect(DSL.parse('aaa A(B C) AND D(E) OR F(G H)')).eql(null);
-      expect(DSL.parse('A(B! C) AND D(E) OR F(G H)')).eql(null);
+      expect(DSL.parse('(A(B! C) AND D(E)) OR F(G H)')).eql(null);
       expect(DSL.parse('A(B C) AND D(E) OR F(G H) ')).eql(null);
-      expect(DSL.parse(' A(B C) AND D(E) OR F(G H) ')).eql(null);
+      expect(DSL.parse(' A(B C) ')).eql(null);
     });
   });
 
@@ -64,7 +64,7 @@ describe('DSL', function() {
         [['']]
       ])).eql(null);
       expect(DSL.stringify([
-        [['!', 'B']]
+        [['(', 'B']]
       ])).eql(null);
       expect(DSL.stringify([
         [[1, 'B']]
@@ -83,7 +83,6 @@ describe('DSL', function() {
     it('should return `false` on invalid string', function() {
       expect(DSL.isValid(' A()')).eql(false);
       expect(DSL.isValid('A() ')).eql(false);
-      expect(DSL.isValid('A(B! C)')).eql(false);
       expect(DSL.isValid('A(B C) OR')).eql(false);
       expect(DSL.isValid('AND A(B C)')).eql(false);
     });
@@ -120,7 +119,7 @@ describe('DSL', function() {
         [['']]
       ])).eql(false);
       expect(DSL.isValid([
-        [['!', 'B']]
+        [['(', 'B']]
       ])).eql(false);
       expect(DSL.isValid([
         [[1, 'B']]
