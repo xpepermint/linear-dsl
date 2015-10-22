@@ -2,4 +2,4 @@
 
 const {parse, stringify, isValid} = require('./lib/dsl');
 
-module.exports = {parse, stringify, isValid};
+module.exports = {normalize, parse, stringify, isValid, mappsTo};
