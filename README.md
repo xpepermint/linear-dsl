@@ -12,10 +12,20 @@ $ npm install --save linear-dsl
 
 ## Usage
 
+Parsing custom DSL query.
+
 ```js
-'use strict';
-
 const dsl = require('linear-dsl');
+let data = dsl.parse('a(foo) AND b(2 bars) OR c(4)');
+```
 
-dsl.parse('a(1) AND b(2 3) OR c(4)');
+Validating query mapping.
+
+```js
+const a = true;
+const b = (args => /[a-z]/i.test(args[0]));
+const c = {args =>};
+const mapping = {a, b, c};
+
+dsl.mappsTo('a(foo) AND b(2 bars) OR c(4)', mapping);
 ```
